@@ -44,6 +44,8 @@
     /* ACHIEVEMENTS: label | loc | [vuoto] | desc allineata con foto | anno */
     .about-row__label { grid-column: 1; }
     .about-row__loc   { grid-column: 2; }
+    .about-row__loc--link { text-decoration: none; }
+    .about-row__loc--link:hover { text-decoration: underline; }
     .about-row__desc  { grid-column: 4 / 6; justify-content: flex-start; }
     .about-row__year  { grid-column: 6; justify-content: flex-end; }
 
@@ -124,7 +126,7 @@
 
       <div class="about-row">
         <span class="about-row__label">ACHIEVEMENTS</span>
-        <span class="about-row__loc">Milano University District</span>
+        <a class="about-row__loc about-row__loc--link" href="https://www.instagram.com/milanouniversitydistrict/" target="_blank" rel="noopener">Milano University District</a>
         <span class="about-row__desc">Curator of the photographic exhibition "Liberi Liberi".</span>
         <span class="about-row__year">2026</span>
       </div>

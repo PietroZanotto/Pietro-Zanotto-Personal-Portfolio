@@ -15,7 +15,7 @@
      RIGHE PROGETTO
      altezza-riga    → altezza a riposo
   ---------------------------------------- */
-  --altezza-riga: 30px;
+  --altezza-riga: 25px;
 
   /* ----------------------------------------
      BORDI ORIZZONTALI
@@ -40,6 +40,11 @@ html, body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+}
+
+body {
+  border-left: 10px solid #ffffff;
+  border-right: 10px solid #ffffff;
 }
 
 main { flex: 1; }
