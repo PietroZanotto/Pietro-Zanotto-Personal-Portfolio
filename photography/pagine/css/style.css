@@ -93,18 +93,18 @@ a:hover { text-decoration: underline; }
   display: flex;
   border: 1.5px solid var(--bordo);
   border-radius: 100px;
-  padding: 1px;
+  overflow: hidden;   /* voce attiva piena, fino al bordo */
 }
 
 .navbar__nav a,
 .navbar__about {
-  padding: 2px 8px;
+  padding: 3px 10px;
   line-height: 15px;
   border-radius: 100px;
   white-space: nowrap;
   transition: background 0.2s, color 0.2s;
 }
-.navbar__about { border: 1.5px solid var(--bordo); padding: 3px 9px; }
+.navbar__about { border: 1.5px solid var(--bordo); padding: 3px 10px; }
 
 .navbar__nav a:hover,
 .navbar__about:hover { background: var(--hover); text-decoration: none; }
