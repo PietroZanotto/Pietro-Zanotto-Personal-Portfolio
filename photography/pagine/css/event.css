@@ -20,7 +20,7 @@ main         { flex: 1; overflow-y: auto; min-height: 0; padding-bottom: 52px; }
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  padding: 14px 12px;
+  padding: 14px var(--margine);
   background: transparent;
   z-index: 9;
   pointer-events: none;
@@ -75,16 +75,18 @@ main         { flex: 1; overflow-y: auto; min-height: 0; padding-bottom: 52px; }
 /* ---- Event header ---- */
 .event-header {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  column-gap: var(--gutter);
+  margin: 8px var(--margine) 0;
   border-top: var(--spessore-bordo) solid var(--bordo);
   border-bottom: var(--spessore-bordo) solid var(--bordo);
 }
 .event-header__num,
 .event-header__title,
 .event-header__date {
-  padding: 6px 12px;
+  padding: 2px 0;
   white-space: nowrap;
-  line-height: 1;
+  line-height: 1.18;
   display: flex;
   align-items: center;
 }
@@ -96,6 +98,7 @@ main         { flex: 1; overflow-y: auto; min-height: 0; padding-bottom: 52px; }
 /* Le foto mostrano la loro altezza naturale, senza ritaglio.
    Il JS in event.js calcola grid-row-end:span per ogni item. */
 .photo-grid {
+  margin: 0 var(--margine);
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   column-gap: var(--gap-foto);
@@ -195,7 +198,7 @@ main         { flex: 1; overflow-y: auto; min-height: 0; padding-bottom: 52px; }
   .lightbox__swipe-hint { display: block; }
   .lightbox__img { max-width: 95vw; max-height: 80vh; }
 
-  /* Footer mobile: flex con Design stuff | logo | Contact me */
+  /* Footer mobile: flex con Also a designer :) | logo | Contact me */
   .footer {
     display: flex;
     justify-content: space-between;
@@ -204,5 +207,5 @@ main         { flex: 1; overflow-y: auto; min-height: 0; padding-bottom: 52px; }
     grid-template-columns: none; /* annulla la griglia desktop */
   }
   .footer-nav { display: none; }       /* nasconde prev/next */
-  .footer-mobile { display: block; }   /* mostra Design stuff e Contact me */
+  .footer-mobile { display: block; }   /* mostra Also a designer :) e Contact me */
 }
