@@ -144,7 +144,7 @@ main { padding-bottom: 80px; }
 
 /* ---------- PRINTED: scans one under the other ---------- */
 #view-printed { padding-top: calc(var(--header-h) + 8px); }
-.pz-scans { width: 70.2vw; margin: 0 auto; }  /* 78vw - 10% */
+.pz-scans { width: 66.7vw; margin: 0 auto; }  /* 78vw - 10% - 5% */
 .pz-scans img { width: 100%; height: auto; }
 
 /* ---------- INDEX ROWS ---------- */
