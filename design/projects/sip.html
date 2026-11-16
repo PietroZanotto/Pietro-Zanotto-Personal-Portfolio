@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pietro Zanotto — SIP</title>
+  <link rel="preload" href="../../fonts/HelveticaNowDisplay-Medium.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="../css/design.css" />
+</head>
+<body data-base="../" class="is-project" data-view="work">
+  <header class="pz-header pz-grid">
+    <a class="pz-header__photo" href="../../photography/pagine/reportage.html">Also a photographer :)</a>
+    <div class="pz-header__tabs pz-tabs" role="group" aria-label="Work or About me">
+      <button type="button" data-tab="work" aria-pressed="true">Work</button>
+      <button type="button" data-tab="about" aria-pressed="false">About Me</button>
+    </div>
+    <button type="button" class="pz-header__web pz-switch" role="switch" aria-checked="false" data-switch="web"><span class="pz-switch__track"><span class="pz-switch__knob"></span></span>Web version</button>
+    <button type="button" class="pz-header__short pz-switch" role="switch" aria-checked="false" data-switch="short"><span class="pz-switch__track"><span class="pz-switch__knob"></span></span>Summarize</button>
+    <a class="pz-header__contact" href="mailto:pietrozanotto@hotmail.com">Contact me*</a>
+  </header>
+  <div class="pz-project-title pz-grid">
+    <div class="pz-row"><span class="pz-row__num">03</span><span class="pz-row__title">SIP</span><span class="pz-row__cat">IoT Engineering &amp; AI-Assisted Debugging</span><span class="pz-row__year">2026</span></div>
+  </div>
+  <main class="pz-project pz-grid">
+    <div class="pz-sub v-full">
+      <section class="pz-block"><h2 class="pz-block__label">[1] Introduction</h2><div class="pz-block__body"><p>Sip is an interactive hydration system: a smart cup with a starfish-shaped companion that reacts to every sip, connected to an app that transforms the water you drink into a growing digital aquarium. Designed for sedentary and highly focused people (studying, office, remote work) who tend to forget to drink.</p><p>Developed by a team of 3 for the Hardware &amp; Software Technologies for Design course. My contribution focused on Arduino programming and the design and assembly of the physical prototype.</p></div></section>
+      <section class="pz-block"><h2 class="pz-block__label">[2] How it works</h2><div class="pz-block__body"><p>Set your hydration schedule in the app → the cup sends a discreet physical reminder (soft light, starfish contracting) → the sensor detects the actual sip → the starfish returns to resting position, signalling completion → the digital aquarium updates and unlocks new fish → the user reviews their daily and weekly hydration history.</p></div></section>
+      <section class="pz-block"><h2 class="pz-block__label">[3] The physical product</h2><div class="pz-block__body"><p>The cup evolved from an initial model to an optimised version, with the main challenge being fitting electronic components and wiring inside an object designed for normal handling.</p><p>Components:</p><ul><li>1× Arduino Nano 33 IoT</li><li>8× LEDs</li><li>8× resistors</li><li>1× DC motor</li><li>1× DC driver</li><li>31× wired connections</li></ul><p>The board was chosen deliberately: the Arduino Nano 33 IoT already includes a built-in motion sensor (accelerometer + gyroscope), eliminating the need for a separate external IMU and further reducing the space required inside the cup, a critical constraint given the limited physical space.</p></div><div class="pz-block__vis"><img src="img/sip-full-03.jpg" alt="SIP" loading="lazy" style="margin-left:calc((100% + 15px) * 1 / 6 + 0px);width:578px;aspect-ratio:385.0/383.0" /></div></section>
+      <section class="pz-block"><h2 class="pz-block__label">[4] Problem solving + data analysis (AI)</h2><div class="pz-block__body"><p>The tilt sensor confused the cup rotating on the table with an actual tilt, causing false positives in sip detection.</p><p>Debugging started with raw IMU data collected by rotating the cup 360°, iteratively analysed with ChatGPT to isolate the issue: tilt values remained stuck at the same number regardless of real movement. The analysis led to normalising acceleration to isolate gravity direction, discarding unstable readings, and projecting angular velocity onto the gravity vector to distinguish rotation (yaw) from real tilt. The system establishes its neutral position by averaging multiple samples of the actual resting position.</p><p>Result: reliable detection in real use conditions, after baseline calibration and a yaw-based check.</p></div><div class="pz-block__vis"><img src="img/sip-full-04.jpg" alt="SIP" loading="lazy" style="margin-left:calc((100% + 15px) * 0 / 6 + 3px);width:856px;aspect-ratio:571.0/294.0" /></div></section>
+      <section class="pz-block"><h2 class="pz-block__label">[5] App design</h2><div class="pz-block__body"><p>The app translates hydration into a growth system: each goal reached unlocks a new species in the digital aquarium, making visible an otherwise invisible metric (how much I've drunk today) through a metaphor that encourages returning to check it.</p></div><div class="pz-block__vis"><img src="img/sip-full-05.jpg" alt="SIP" loading="lazy" style="margin-left:calc((100% + 15px) * 1 / 6 + 0px);width:578px;aspect-ratio:385.0/255.0" /></div></section>
+    </div>
+    <div class="pz-sub v-short">
+      <section class="pz-block"><h2 class="pz-block__label">[1] Introduction</h2><div class="pz-block__body"><p>Interactive hydration system: <strong>smart cup + starfish companion</strong> reacting to every sip, connected to an app where water drunk → <strong>growing digital aquarium</strong>. For sedentary, highly focused people (study, office, remote work) who forget to drink.</p><p>Team of 3 · Hardware &amp; Software Technologies for Design. <strong>My role: Arduino programming + physical prototype</strong> (design, assembly).</p></div></section>
+      <section class="pz-block"><h2 class="pz-block__label">[2] How it works</h2><div class="pz-block__body"><p>Set schedule in app → cup sends discreet reminder (soft light, starfish contracts) → sensor detects real sip → starfish back to rest = done → aquarium updates, new fish unlocked → daily/weekly history.</p></div></section>
+      <section class="pz-block"><h2 class="pz-block__label">[3] The physical product</h2><div class="pz-block__body"><p>First model → optimised version. Main challenge: <strong>electronics and wiring inside an object made for normal handling.</strong></p><p>Components: 1× Arduino Nano 33 IoT · 8× LEDs · 8× resistors · 1× DC motor · 1× DC driver · 31× wired connections.</p><p>Nano 33 IoT chosen on purpose: <strong>built-in motion sensor</strong> (accelerometer + gyroscope) → no external IMU, less space in an already tight cup.</p></div><div class="pz-block__vis"><img src="img/sip-short-03.jpg" alt="SIP" loading="lazy" style="margin-left:calc((100% + 15px) * 1 / 6 + 0px);width:578px;aspect-ratio:385.0/383.0" /></div></section>
+      <section class="pz-block"><h2 class="pz-block__label">[4] Problem solving + data analysis (AI)</h2><div class="pz-block__body"><p>Problem: tilt sensor confused <strong>cup rotating on the table with a real tilt</strong> → false sip detections.</p><p>Debug: raw IMU data from 360° rotations, analysed iteratively with ChatGPT → tilt stuck at the same value whatever the movement. Fix: normalise acceleration to isolate gravity · discard unstable readings · project angular velocity onto gravity vector → <strong>yaw ≠ tilt</strong>. Neutral position = average of multiple resting samples.</p><p>Result: <strong>reliable detection in real use</strong>, after baseline calibration + yaw check.</p></div></section>
+      <section class="pz-block"><h2 class="pz-block__label">[5] App design</h2><div class="pz-block__body"><p>Hydration → growth: each goal unlocks a new species in the aquarium. <strong>Invisible metric (how much I drank today) made visible</strong>, metaphor pulls you back to check.</p></div><div class="pz-block__vis"><img src="img/sip-short-05.jpg" alt="SIP" loading="lazy" style="margin-left:calc((100% + 15px) * 1 / 6 + 0px);width:578px;aspect-ratio:385.0/256.0" /></div></section>
+    </div>
+  </main>
+  <footer class="pz-footer">
+    <a class="pz-footer__nav pz-footer__nav--prev" href="moody.html">← MOODY</a><img src="../../logo/logo-footer.png" alt="Pietro Zanotto" /><a class="pz-footer__nav pz-footer__nav--next" href="lista-aperta.html">LISTA APERTA →</a>
+  </footer>
+
+  <div class="pz-mobile-block">use a pc to discover my portfolio :)</div>
+  <script src="../js/design.js"></script>
+</body>
+</html>

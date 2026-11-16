@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pietro Zanotto</title>
+  <script>
+    /* Old links (/pagine/..., /foto/...) moved inside /photography */
+    (function () {
+      var p = location.pathname;
+      if (/^\/(pagine|foto)\//.test(p)) location.replace('/photography' + p + location.search + location.hash);
+    }());
+  </script>
+  <style>
+    html, body { height: 100%; margin: 0; background: #fff; }
+    body { display: flex; align-items: center; justify-content: center; font: 700 12px/1.25 'Helvetica Neue', Arial, sans-serif; color: #000; }
+    a { color: inherit; }
+  </style>
+</head>
+<body>
+  <p>Page not found. <a href="/">Go home</a></p>
+</body>
+</html>

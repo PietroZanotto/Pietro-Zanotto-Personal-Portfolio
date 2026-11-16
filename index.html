@@ -1,43 +1,48 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="refresh" content="0; url=pagine/reportage.html" />
   <title>Pietro Zanotto</title>
+  <link rel="preload" href="fonts/HelveticaNowDisplay-Bold.woff2" as="font" type="font/woff2" crossorigin />
   <style>
+    @font-face { font-family: 'Helvetica Now Display'; src: url('fonts/HelveticaNowDisplay-Bold.woff2') format('woff2'); font-weight: 700; font-display: swap; }
+
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+    html, body { height: 100%; background: #fff; }
     body {
       display: flex;
-      justify-content: center;
+      flex-direction: column;
       align-items: center;
-      min-height: 100vh;
-      background: #ffffff;
-      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    }
-
-    .enter {
-      border: 1px solid #000;
-      border-radius: 999px;
-      padding: 12px 32px;
-      font-size: 14px;
-      cursor: pointer;
-      background: #fff;
-      transition: background 0.2s, color 0.2s;
-      text-decoration: none;
+      justify-content: center;
+      gap: 6px;
       color: #000;
+      font: 700 12px/1.25 'Helvetica Now Display', 'Helvetica Neue', Inter, Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
     }
 
-    .enter:hover {
-      background: #000;
-      color: #fff;
+    .choices { display: flex; gap: 6px; }
+
+    .choice {
+      border: 1.5px solid #000;
+      border-radius: 100px;
+      padding: 2px 8px;
+      line-height: 15px;
+      color: inherit;
+      text-decoration: none;
+      transition: background .2s, color .2s;
     }
+    .choice:hover { background: #000; color: #fff; }
   </style>
 </head>
 <body>
 
-  <a href="pagine/reportage.html" class="enter">Entra</a>
+  <p>Hybrid creative. Pick one.</p>
+  <nav class="choices" aria-label="Choose a section">
+    <a class="choice" href="photography/pagine/reportage.html">Photo</a>
+    <a class="choice" href="design/index.html">Design</a>
+  </nav>
 
 </body>
 </html>

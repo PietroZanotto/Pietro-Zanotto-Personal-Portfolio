@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pietro Zanotto — Design</title>
+  <link rel="preload" href="../fonts/HelveticaNowDisplay-Medium.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="css/design.css" />
+</head>
+<body data-base="" data-view="printed">
+  <header class="pz-header pz-grid">
+    <a class="pz-header__photo" href="../photography/pagine/reportage.html">Also a photographer :)</a>
+    <div class="pz-header__tabs pz-tabs" role="group" aria-label="Work or About me">
+      <button type="button" data-tab="work" aria-pressed="true">Work</button>
+      <button type="button" data-tab="about" aria-pressed="false">About Me</button>
+    </div>
+    <button type="button" class="pz-header__web pz-switch" role="switch" aria-checked="false" data-switch="web"><span class="pz-switch__track"><span class="pz-switch__knob"></span></span>Web version</button>
+    <button type="button" class="pz-header__short pz-switch" role="switch" aria-checked="false" data-switch="short"><span class="pz-switch__track"><span class="pz-switch__knob"></span></span>Summarize</button>
+    <a class="pz-header__contact" href="mailto:pietrozanotto@hotmail.com">Contact me*</a>
+  </header>
+  <main>
+    <section id="view-printed" class="pz-view" aria-label="Printed portfolio">
+      <div class="pz-scans">
+        <img src="img/scan/001.jpg" alt="Printed portfolio, page 1" width="1600" height="2181" loading="eager" />
+        <img src="img/scan/002.jpg" alt="Printed portfolio, page 2" width="1600" height="2181" loading="eager" />
+        <img src="img/scan/003.jpg" alt="Printed portfolio, page 3" width="1600" height="2181" loading="lazy" />
+        <img src="img/scan/004.jpg" alt="Printed portfolio, page 4" width="1600" height="2181" loading="lazy" />
+        <img src="img/scan/005.jpg" alt="Printed portfolio, page 5" width="1600" height="2181" loading="lazy" />
+        <img src="img/scan/006.jpg" alt="Printed portfolio, page 6" width="1600" height="2181" loading="lazy" />
+        <img src="img/scan/007.jpg" alt="Printed portfolio, page 7" width="1600" height="2181" loading="lazy" />
+        <img src="img/scan/008.jpg" alt="Printed portfolio, page 8" width="1600" height="2181" loading="lazy" />
+        <img src="img/scan/009.jpg" alt="Printed portfolio, page 9" width="1600" height="2181" loading="lazy" />
+        <img src="img/scan/010.jpg" alt="Printed portfolio, page 10" width="1600" height="2181" loading="lazy" />
+        <img src="img/scan/011.jpg" alt="Printed portfolio, page 11" width="1600" height="2181" loading="lazy" />
+        <img src="img/scan/012.jpg" alt="Printed portfolio, page 12" width="1600" height="2181" loading="lazy" />
+        <img src="img/scan/013.jpg" alt="Printed portfolio, page 13" width="1600" height="2181" loading="lazy" />
+        <img src="img/scan/014.jpg" alt="Printed portfolio, page 14" width="1600" height="2181" loading="lazy" />
+        <img src="img/scan/015.jpg" alt="Printed portfolio, page 15" width="1600" height="2181" loading="lazy" />
+        <img src="img/scan/016.jpg" alt="Printed portfolio, page 16" width="1600" height="2181" loading="lazy" />
+        <img src="img/scan/017.jpg" alt="Printed portfolio, page 17" width="1600" height="2181" loading="lazy" />
+        <img src="img/scan/018.jpg" alt="Printed portfolio, page 18" width="1600" height="2181" loading="lazy" />
+        <img src="img/scan/019.jpg" alt="Printed portfolio, page 19" width="1600" height="2181" loading="lazy" />
+      </div>
+    </section>
+    <section id="view-work" class="pz-view" aria-label="Work">
+      <div class="pz-grid pz-index">
+      <a class="pz-row" href="projects/astrolearn.html"><span class="pz-row__num">01</span><span class="pz-row__title">Astrolearn</span><span class="pz-row__cat">AI System &amp; UX Research</span><span class="pz-row__year">2026</span></a>
+      <a class="pz-row" href="projects/moody.html"><span class="pz-row__num">02</span><span class="pz-row__title">Moody</span><span class="pz-row__cat">Interaction Design &amp; Usability Research</span><span class="pz-row__year">2026</span></a>
+      <a class="pz-row" href="projects/sip.html"><span class="pz-row__num">03</span><span class="pz-row__title">SIP</span><span class="pz-row__cat">IoT Engineering &amp; AI-Assisted Debugging</span><span class="pz-row__year">2026</span></a>
+      <a class="pz-row" href="projects/lista-aperta.html"><span class="pz-row__num">04</span><span class="pz-row__title">Lista Aperta</span><span class="pz-row__cat">Systems Thinking</span><span class="pz-row__year">Ongoing</span></a>
+      </div>
+    </section>
+    <section id="view-about" class="pz-view" aria-label="About me">
+      <div class="pz-grid pz-cv">
+      <div class="pz-cv__intro"><div>//</div><div>PietroZanotto*</div><div><p>I design human-AI systems and digital products, moving between UX research, prototyping (digital and physical) and information architecture. I work well on technically complex problems, where precision and optimization matter more than decoration.</p><p>Based in Milan, Italy.</p></div></div>
+      <section class="pz-cv__section"><h2 class="pz-cv__label">Work experience</h2><div class="pz-cv__entries"><div class="pz-cv__entry"><div class="pz-cv__what">Researcher &amp; Interaction Designer<span><img src="img/cv/lista-aperta.jpg" alt="" />Lista Aperta, Politecnico di Milano</span><span>2025 – Ongoing</span></div><div class="pz-cv__details"><p>Information architecture: reframed the brief from a technical access problem to an IA-values misalignment, restructuring the site around actual user behavior.</p><p>Technical migration: moved the site from WordPress to Framer, removing the bottleneck that limited updates to one or two team members.</p><p>Next step (approved by the council and planned): custom site with a dedicated admin panel, expected to cut annual costs from €360 to €30.</p></div></div><div class="pz-cv__entry"><div class="pz-cv__what">Brand &amp; Product Designer<span><img src="img/cv/groove.png" alt="" />Groove Freelance, startup</span><span>Sep – Dec 2024</span></div><div class="pz-cv__details"><p>Brand identity: naming, logo, typography and color system for a nightlife discovery and access app.</p><p>Product design: functional prototype featuring QR-based check-in, with dual user/organizer modes.</p><p>Ownership: identified the core problem (fragmented, opaque access to venues) and designed the end-to-end solution from scratch.</p></div></div></div></section>
+      <section class="pz-cv__section"><h2 class="pz-cv__label">Skills</h2><div class="pz-cv__entries"><div class="pz-cv__entry"><div class="pz-cv__what">Product &amp; Research</div><div class="pz-cv__details"><p>UX research, field observation, competitive benchmarking, service design, information architecture, usability testing (guerrilla testing, SUS/SEQ), systems thinking, design research.</p></div></div><div class="pz-cv__entry"><div class="pz-cv__what">AI &amp; Systems Design</div><div class="pz-cv__details"><p>AI architectures for content extraction/classification/matching, prompt engineering (structured prompting, JSON schema-based output), AI-assisted debugging, human-AI interaction design.</p></div></div><div class="pz-cv__entry"><div class="pz-cv__what">Hardware &amp; Engineering</div><div class="pz-cv__details"><p>Arduino programming, IoT prototyping, circuit design and wiring, physical prototyping and assembly.</p></div></div></div></section>
+      <section class="pz-cv__section"><h2 class="pz-cv__label">Education</h2><div class="pz-cv__entries"><div class="pz-cv__entry"><div class="pz-cv__what">Master's Degree in Digital and Interaction Design<span>Politecnico di Milano (IT)</span></div><div class="pz-cv__date">Sep 2025 → Ongoing</div></div><div class="pz-cv__entry"><div class="pz-cv__what">Exchange Program<span>Linnaeus University (SE)</span></div><div class="pz-cv__date">Jan 2025 → Jun 2025</div></div><div class="pz-cv__entry"><div class="pz-cv__what">Bachelor's Degree in Communication Design<span>Politecnico di Milano (IT)</span></div><div class="pz-cv__date">Sep 2022 → Jul 2025</div></div></div></section>
+      <section class="pz-cv__section"><h2 class="pz-cv__label">External engagements</h2><div class="pz-cv__entries"><div class="pz-cv__entry"><div class="pz-cv__what"><img src="img/cv/aalto.png" alt="" />Aalto University &amp; <img src="img/cv/tu-delft.png" alt="" />TU Delft Workshop<span>Designing Participation Workshop, Lecco (IT)</span></div><div class="pz-cv__date">2026</div></div><div class="pz-cv__entry"><div class="pz-cv__what">Exhibition at Antidisciplinary Lab<span>"Believe It or Not" exhibition, DotDotDot hosting, Milan (IT)</span></div><div class="pz-cv__date">2025</div></div><div class="pz-cv__entry"><div class="pz-cv__what"><img src="img/cv/unesco.png" alt="" />UNESCO Collaboration<span>Polimi collaboration with Villa Adriana, Tivoli (IT)</span></div><div class="pz-cv__date">2024</div></div></div></section>
+      <div class="pz-cv__split"><div class="pz-cv__half"><b>Languages</b><div>Italian → Native<br>English → Proficient<br>French → Basic</div></div><div class="pz-cv__half"><b>Contacts</b><div><a href="tel:+393420654362">+39 342 065 4362</a><br><a href="mailto:pietrozanotto@hotmail.com">pietrozanotto@hotmail.com</a><br><a href="https://www.linkedin.com/in/pietrozanotto/" target="_blank" rel="noopener">in/pietrozanotto</a></div></div></div>
+      </div>
+    </section>
+  </main>
+  <footer class="pz-footer">
+    <img src="../logo/logo-footer.png" alt="Pietro Zanotto" />
+  </footer>
+
+  <div class="pz-mobile-block">use a pc to discover my portfolio :)</div>
+  <script src="js/design.js"></script>
+</body>
+</html>

@@ -1,0 +1,256 @@
+/* =============================================
+   FONT — file in /fonts (condivisi con la parte design)
+============================================= */
+@font-face { font-family: 'Helvetica Now Display'; src: url('../../../fonts/HelveticaNowDisplay-Regular.woff2') format('woff2'); font-weight: 400; font-display: swap; }
+@font-face { font-family: 'Helvetica Now Display'; src: url('../../../fonts/HelveticaNowDisplay-Medium.woff2') format('woff2'); font-weight: 500; font-display: swap; }
+@font-face { font-family: 'Helvetica Now Display'; src: url('../../../fonts/HelveticaNowDisplay-Bold.woff2') format('woff2'); font-weight: 700; font-display: swap; }
+@font-face { font-family: 'Helvetica Now Display'; src: url('../../../fonts/HelveticaNowDisplay-ExtraBold.woff2') format('woff2'); font-weight: 800; font-display: swap; }
+
+/* =============================================
+   COLORI — modifica qui per cambiare tema
+============================================= */
+:root {
+  --sfondo:        #ffffff;
+  --testo:         #000000;
+  --bordo:         #000000;
+  --hover:         #eeeeee;
+  --nav-attivo-bg: #000000;
+  --nav-attivo-fg: #ffffff;
+
+  --font: 'Helvetica Now Display', sans-serif;
+
+  /* ----------------------------------------
+     RIGHE PROGETTO
+     altezza-riga    → altezza a riposo
+  ---------------------------------------- */
+  --altezza-riga: 25px;
+
+  /* ----------------------------------------
+     BORDI ORIZZONTALI
+     Cambia il numero (es. 1px → 2px)
+     per rendere le linee più spesse
+  ---------------------------------------- */
+  --spessore-bordo: 1.7px;
+}
+
+
+/* =============================================
+   RESET BASE
+============================================= */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  background: var(--sfondo);
+  color: var(--testo);
+  font-family: var(--font);
+  font-size: 13px;
+  font-weight: 500;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+body {
+  border-left: 10px solid #ffffff;
+  border-right: 10px solid #ffffff;
+}
+
+main { flex: 1; }
+
+a { color: inherit; text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+
+/* =============================================
+   NAVBAR
+============================================= */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 20px;
+  background: var(--sfondo);
+  position: relative;
+}
+
+.navbar__side { font-style: italic; }
+
+/* Centro assoluto rispetto alla pagina */
+.navbar__center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Pillola navigazione principale */
+.navbar__nav {
+  display: flex;
+  border: var(--spessore-bordo) solid var(--bordo);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.navbar__nav a,
+.navbar__about {
+  padding: 6px 16px;
+  white-space: nowrap;
+  transition: background 0.2s;
+}
+
+/* Hover con bordi rotondi */
+.navbar__nav a:hover {
+  background: var(--hover);
+  border-radius: 999px;
+  text-decoration: none;
+}
+
+.navbar__about:hover {
+  background: var(--hover);
+  text-decoration: none;
+}
+
+/* Voce attiva */
+.navbar__nav a.active,
+.navbar__about.active {
+  background: var(--nav-attivo-bg);
+  color: var(--nav-attivo-fg);
+  border-radius: 999px;
+}
+
+/* Pillola separata About Me */
+.navbar__about {
+  border: var(--spessore-bordo) solid var(--bordo);
+  border-radius: 999px;
+}
+
+
+/* =============================================
+   GRIGLIA PROGETTI
+   Layout a 6 colonne:
+   col 1    → numero
+   col 2-3  → titolo
+   col 4-5  → immagine  ← QUI VANNO LE FOTO
+   col 6    → data
+============================================= */
+.projects {
+  border-top: var(--spessore-bordo) solid var(--bordo);
+}
+
+.project-row {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  border-bottom: var(--spessore-bordo) solid var(--bordo);
+  height: var(--altezza-riga);
+  overflow: hidden;
+  cursor: pointer;
+  transition: height 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+  color: inherit;
+}
+
+/* All'hover la riga si apre per mostrare l'immagine intera */
+.project-row:hover { height: var(--altezza-aperta, 500px); }
+
+/* Testo centrato verticalmente */
+.project-row__num,
+.project-row__title,
+.project-row__date {
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  height: var(--altezza-riga);
+  align-self: start;
+  white-space: nowrap;
+  line-height: 1;
+}
+
+.project-row__num   { grid-column: 1; }
+.project-row__title { grid-column: 2 / 4; }
+.project-row__date  { grid-column: 6; justify-content: flex-end; }
+
+/* Colonna immagine */
+.project-row__img {
+  grid-column: 4 / 6;
+  overflow: hidden;
+}
+
+/* ↓↓↓ QUI INSERISCI LE TUE FOTO ↓↓↓
+   In ogni .project-row__img metti:
+   <img src="../foto/nome-file.jpg" alt="descrizione" loading="lazy" />
+   L'immagine viene mostrata per intero, senza tagli né zoom.
+*/
+.project-row__img img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+
+/* =============================================
+   FOOTER — attaccato al fondo della pagina
+============================================= */
+.footer {
+  display: flex;
+  justify-content: center;
+  padding: 10px 0;
+  background: transparent;
+  margin-top: auto;
+}
+
+
+/* link footer mobile — nascosti su desktop */
+.footer-mobile { display: none; }
+
+/* =============================================
+   MOBILE  (schermi < 768px)
+============================================= */
+@media (max-width: 768px) {
+
+  /* ---- Navbar ---- */
+  .navbar { flex-wrap: wrap; gap: 12px; padding: 14px 16px; }
+  .navbar__side { display: none; }        /* Design stuff e Contact me escono dal navbar */
+
+  .navbar__center {
+    position: static;
+    transform: none;
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .navbar__nav { border-radius: 999px; flex-wrap: wrap; }
+  .navbar__nav a { padding: 8px 14px; font-size: 12px; }
+  .navbar__about { font-size: 12px; }
+
+  /* ---- Progetti lista ---- */
+  .project-row { grid-template-columns: 1fr 1fr; height: auto; min-height: var(--altezza-riga); }
+  .project-row:hover { height: auto; }
+  .project-row__num, .project-row__date { display: none; }
+  .project-row__title { grid-column: 1; white-space: normal; height: auto; padding: 8px 12px; line-height: 1.3; }
+  .project-row__img   { grid-column: 2; }
+
+  /* ---- Footer fisso con Design stuff e Contact me ---- */
+  .footer {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 14px;
+    background: transparent;
+  }
+  .footer-mobile {
+    display: block;
+    font-family: var(--font);
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--testo);
+    text-decoration: none;
+    opacity: 1;
+  }
+
+  /* Spazio extra sotto per non nascondere contenuti dietro il footer fisso */
+  main { padding-bottom: 52px; }
+}

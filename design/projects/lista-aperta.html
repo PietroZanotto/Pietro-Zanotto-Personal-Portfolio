@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pietro Zanotto — Lista Aperta</title>
+  <link rel="preload" href="../../fonts/HelveticaNowDisplay-Medium.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="../css/design.css" />
+</head>
+<body data-base="../" class="is-project" data-view="work">
+  <header class="pz-header pz-grid">
+    <a class="pz-header__photo" href="../../photography/pagine/reportage.html">Also a photographer :)</a>
+    <div class="pz-header__tabs pz-tabs" role="group" aria-label="Work or About me">
+      <button type="button" data-tab="work" aria-pressed="true">Work</button>
+      <button type="button" data-tab="about" aria-pressed="false">About Me</button>
+    </div>
+    <button type="button" class="pz-header__web pz-switch" role="switch" aria-checked="false" data-switch="web"><span class="pz-switch__track"><span class="pz-switch__knob"></span></span>Web version</button>
+    <button type="button" class="pz-header__short pz-switch" role="switch" aria-checked="false" data-switch="short"><span class="pz-switch__track"><span class="pz-switch__knob"></span></span>Summarize</button>
+    <a class="pz-header__contact" href="mailto:pietrozanotto@hotmail.com">Contact me*</a>
+  </header>
+  <div class="pz-project-title pz-grid">
+    <div class="pz-row"><span class="pz-row__num">04</span><span class="pz-row__title">Lista Aperta</span><span class="pz-row__cat">Systems Thinking</span><span class="pz-row__year">Ongoing</span></div>
+  </div>
+  <main class="pz-project pz-grid">
+    <div class="pz-sub v-full">
+      <section class="pz-block"><h2 class="pz-block__label">[1] Introduction</h2><div class="pz-block__body"><p>Lista Aperta (LA) is a student list from the Politecnico di Milano advocating for the right to study. The website is a practical resource for its members: events, guides for freshmen, elections, contacts of representatives, information regularly consulted by many people.</p><p>Developed by a team of 4. My role: design researcher, interaction design, prototyping.</p></div></section>
+      <section class="pz-block"><h2 class="pz-block__label">[2] The problem</h2><div class="pz-block__body"><p>The old website was on WordPress, manageable only by those with specific technical skills. A serious bottleneck: the site requires weekly updates (events, news, representatives' cards), but only one or two people in the list could intervene.</p><p>The initial analysis revealed a deeper issue than just technical access: the site did not reflect Lista Aperta's core values. It prioritised generic content over people and representatives, and the information architecture did not follow actual user behaviour; key sections like events and representatives' faces, often the first interest of visitors, were hidden or unclear.</p></div><div class="pz-block__vis"><img src="img/lista-aperta-full-02.jpg" alt="Lista Aperta" loading="lazy" style="margin-left:calc((100% + 15px) * 1 / 6 + 0px);width:578px;aspect-ratio:385.0/380.0" /></div></section>
+      <section class="pz-block"><h2 class="pz-block__label">[3] Information architecture</h2><div class="pz-block__body"><p>The new IA reorganises the site around what users really look for: who represents the list, what events are on, how to participate. The "Who We Are" section links directly to dynamic cards of representatives and the organisational chart; the events section leads straight to useful information (date, place, tickets) without intermediate steps.</p></div><div class="pz-block__vis"><img src="img/lista-aperta-full-03.jpg" alt="Lista Aperta" loading="lazy" style="margin-left:calc((100% + 15px) * 0 / 6 + 26px);width:812px;aspect-ratio:541.0/642.0" /></div></section>
+      <section class="pz-block"><h2 class="pz-block__label">[4] The solution</h2><div class="pz-block__body"><p>Framer was chosen for a specific reason: it gives future list designers a visual tool similar to Figma, without needing to write code for every change. Anyone taking over the role can update content and layout without depending on those who built the site.</p></div><div class="pz-block__vis"><img src="img/lista-aperta-full-04.jpg" alt="Lista Aperta" loading="lazy" style="margin-left:calc((100% + 15px) * 1 / 6 + 0px);width:578px;aspect-ratio:385.0/252.0" /></div></section>
+      <section class="pz-block"><h2 class="pz-block__label">[5] Next step</h2><div class="pz-block__body"><p>Framer solved technical access, but introduced two structural problems. Cost: €360/year, of which only €200 is covered by Politecnico funds; the remaining €160 is self-financed through stalls and collections. Dependency: the site lives on an external paid service, and editing it still requires knowing Framer, a tool built for designers, not for a representative who just needs to publish an event.</p><p>The next step, approved by Lista Aperta's council and already planned, is a custom-built site with an admin panel designed for representatives: log in, create and edit events in a few clicks, no visual editor, no code. Costs drop to domain and hosting (about €30/year), and updates no longer require any technical skills: any representative can do them.</p><p>The shift: from "a site that's easier to edit" to "a site that almost no one needs to edit".</p></div></section>
+    </div>
+    <div class="pz-sub v-short">
+      <section class="pz-block"><h2 class="pz-block__label">[1] Introduction</h2><div class="pz-block__body"><p>Student list at Politecnico di Milano fighting for the right to study. Website = practical resource for members: events, freshman guides, elections, representatives' contacts, checked regularly by many.</p><p>Team of 4. <strong>My role: design researcher, interaction design, prototyping.</strong></p></div></section>
+      <section class="pz-block"><h2 class="pz-block__label">[2] The problem</h2><div class="pz-block__body"><p>Old site on WordPress → only people with technical skills could manage it. <strong>Bottleneck: weekly updates needed, only 1–2 people able.</strong></p><p>Deeper issue: <strong>site didn't reflect LA's values</strong> → generic content over people, IA not following real behaviour; events and representatives' faces (visitors' first interest) hidden or unclear.</p></div><div class="pz-block__vis"><img src="img/lista-aperta-short-02.jpg" alt="Lista Aperta" loading="lazy" style="margin-left:calc((100% + 15px) * 1 / 6 + 0px);width:578px;aspect-ratio:385.0/380.0" /></div></section>
+      <section class="pz-block"><h2 class="pz-block__label">[3] Information architecture</h2><div class="pz-block__body"><p>New IA built on what users look for: <strong>who represents the list, what's on, how to join.</strong> "Who We Are" → dynamic representatives' cards + org chart. Events → date, place, tickets, no intermediate steps.</p></div></section>
+      <section class="pz-block"><h2 class="pz-block__label">[4] The solution</h2><div class="pz-block__body"><p>Why Framer: <strong>visual tool like Figma</strong> for future list designers, no code per change → whoever takes over updates content and layout without depending on the builders.</p></div><div class="pz-block__vis"><img src="img/lista-aperta-short-04.jpg" alt="Lista Aperta" loading="lazy" style="margin-left:calc((100% + 15px) * 1 / 6 + 0px);width:578px;aspect-ratio:385.0/252.0" /></div></section>
+      <section class="pz-block"><h2 class="pz-block__label">[5] Next step</h2><div class="pz-block__body"><p>Framer fixed access, created 2 problems. <strong>Cost</strong>: €360/yr, only €200 covered by Politecnico, €160 self-funded (stalls, collections). <strong>Dependency</strong>: external paid service, editing still needs Framer, a designer's tool, not a representative's.</p><p>Next (approved by the council, planned): <strong>custom site + admin panel</strong> for representatives → log in, create/edit events in a few clicks, no editor, no code. Costs → domain + hosting (~€30/yr).</p><p>Shift: "a site easier to edit" → <strong>"a site almost no one needs to edit"</strong>.</p></div></section>
+    </div>
+  </main>
+  <footer class="pz-footer">
+    <a class="pz-footer__nav pz-footer__nav--prev" href="sip.html">← SIP</a><img src="../../logo/logo-footer.png" alt="Pietro Zanotto" />
+  </footer>
+
+  <div class="pz-mobile-block">use a pc to discover my portfolio :)</div>
+  <script src="../js/design.js"></script>
+</body>
+</html>
