@@ -75,4 +75,46 @@
   });
 
   render();
+
+  /* ---------- Open a project like a window ----------
+     The clicked row rises to the title-bar position of the project page,
+     rows below fall away, rows above fade; then the project page opens its
+     content underneath the same bar (see .is-opening in design.css). */
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var indexRows = Array.prototype.slice.call(document.querySelectorAll('.pz-index a.pz-row'));
+  var EASE = 'cubic-bezier(.65,0,.35,1)';
+
+  function resetRows() {
+    indexRows.forEach(function (r) { r.style.transition = ''; r.style.transform = ''; r.style.opacity = ''; });
+    var f = document.querySelector('.pz-footer'); if (f) { f.style.transition = ''; f.style.opacity = ''; }
+    body.classList.remove('is-leaving');
+  }
+  window.addEventListener('pageshow', function (e) { if (e.persisted) resetRows(); });
+
+  indexRows.forEach(function (row, i) {
+    row.addEventListener('click', function (e) {
+      if (reduce || e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+      e.preventDefault();
+      body.classList.add('is-leaving');
+      var header = parseFloat(getComputedStyle(body).getPropertyValue('--header-h')) || 52;
+      var dy = (header + 8) - row.getBoundingClientRect().top;
+      row.style.transition = 'transform .6s ' + EASE;
+      row.style.transform = 'translateY(' + dy + 'px)';
+      indexRows.forEach(function (r, j) {
+        if (j === i) return;
+        if (j > i) {
+          r.style.transition = 'transform .6s ' + EASE + ' ' + (j - i - 1) * 0.05 + 's, opacity .4s ease ' + (j - i - 1) * 0.05 + 's';
+          r.style.transform = 'translateY(' + window.innerHeight + 'px)';
+        } else {
+          r.style.transition = 'opacity .3s ease, transform .6s ' + EASE;
+          r.style.transform = 'translateY(' + dy + 'px)';
+        }
+        r.style.opacity = '0';
+      });
+      var f = document.querySelector('.pz-footer');
+      if (f) { f.style.transition = 'opacity .3s ease'; f.style.opacity = '0'; }
+      try { sessionStorage.setItem('pz-open', '1'); } catch (err) { /* ignore */ }
+      setTimeout(function () { location.href = row.href; }, 650);
+    });
+  });
 }());
