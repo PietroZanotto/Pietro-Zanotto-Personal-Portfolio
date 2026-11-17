@@ -107,8 +107,8 @@
     function wave(t, a, b, c) {
       return Math.sin(t * a + seed) * 0.6 + Math.sin(t * b + seed * 1.7) * 0.3 + Math.sin(t * c + seed * 2.3) * 0.1;
     }
-    /* The cursor nudges the logo: about 20% of the free movement, eased in and out */
-    var INFLUENCE = 0.2;
+    /* The cursor nudges the logo: about 10% of the free movement, eased in and out */
+    var INFLUENCE = 0.1;
     var target = { x: 0, y: 0 }, cur = { x: 0, y: 0 };
     window.addEventListener('pointermove', function (e) {
       target.x = (e.clientX / window.innerWidth) * 2 - 1;    // -1 left … 1 right
