@@ -148,7 +148,12 @@ main { padding-bottom: 80px; }
 .pz-scans img { width: 100%; height: auto; }
 
 /* ---------- INDEX ROWS ---------- */
-#view-about { padding-top: 105px; }
+#view-about { padding-top: calc(var(--header-h) + 8px + 20px + var(--pz-space-30)); }
+/* fixed CV bar: the CV scrolls under it and disappears below the line */
+.pz-about-title { display: none; position: fixed; top: var(--header-h); left: 0; right: 0; z-index: 19; background: var(--pz-color-bg-page); padding-top: 8px; }
+body[data-view="about"] .pz-about-title { display: grid; }
+.pz-about-title .pz-row { border-top: 0; border-bottom: var(--pz-stroke-rule) solid var(--pz-color-border-rule); padding: 0 0 2px; }
+.pz-about-title .pz-row__title { text-transform: none; }
 /* the index sits exactly where the project title bar will be once a project is open */
 #view-work { padding-top: calc(var(--header-h) + 8px); }
 .pz-row {
@@ -215,9 +220,24 @@ a.pz-row:hover .pz-row__title { text-decoration: underline; }
 .pz-block__body  { grid-column: 2 / -1; display: flex; flex-direction: column; gap: 12px; }
 .pz-block__body ul { padding-left: 16px; }
 .pz-block__body a { text-decoration: underline; }
-.pz-block__vis { grid-column: 1 / -1; margin-top: var(--pz-space-30); display: flex; justify-content: center; }
-.pz-schema { display: block; height: auto; max-width: 100%; }
-.pz-stack { display: flex; flex-direction: column; align-items: flex-end; gap: 22px; max-width: 100%; }
+.pz-block__vis { grid-column: 2 / -1; margin-top: var(--pz-space-30); display: flex; justify-content: flex-start; }
+/* images start on the text's left edge (3rd column) and may run into the free 6th column */
+.pz-schema { display: block; height: auto; max-width: calc(133.333% + 5px); }
+.pz-stack { display: flex; flex-direction: column; align-items: flex-start; gap: 22px; max-width: calc(133.333% + 5px); }
+.pz-stack .pz-schema { max-width: 100%; }
+
+/* Astrolearn prompt excerpt */
+.pz-prompt { display: grid; grid-template-columns: 1fr 1fr; column-gap: var(--pz-grid-gutter); width: 100%; }
+.pz-prompt__title { margin-bottom: 6px; color: var(--pz-color-text-secondary); }
+.pz-prompt pre { margin: 0; font: 500 11px/1.3 var(--pz-font); white-space: pre-wrap; overflow-wrap: anywhere; }
+
+/* Summarized: no blank lines between paragraphs */
+.v-short .pz-block__body { gap: 0; }
+
+/* Hover a paragraph: its key phrase / key words turn black */
+mark.pz-key { background: transparent; color: inherit; transition: background .2s, color .2s; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+.pz-block__body p:hover mark.pz-key,
+.pz-block__body li:hover mark.pz-key { background: #000; color: #fff; }
 
 /* ---------- Diagrams rebuilt from Figma (print px, zoomed so 10px = 13px) ---------- */
 .dg { position: relative; flex: none; zoom: 1.3; font-size: 10px; line-height: 11px; font-weight: 500; }
