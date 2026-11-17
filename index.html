@@ -5,27 +5,58 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Pietro Zanotto</title>
   <link rel="preload" href="fonts/HelveticaNowDisplay-Bold.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="logo/logo-PietroZanotto.svg" as="image" />
   <style>
     @font-face { font-family: 'Helvetica Now Display'; src: url('fonts/HelveticaNowDisplay-Bold.woff2') format('woff2'); font-weight: 700; font-display: swap; }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    html, body { height: 100%; background: #fff; }
+    html, body { height: 100%; background: #fff; overflow: hidden; }
     body {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      color: #000;
       font: 700 12px/1.25 'Helvetica Now Display', 'Helvetica Neue', Inter, Arial, sans-serif;
       -webkit-font-smoothing: antialiased;
     }
 
-    .choices { display: flex; gap: 6px; }
+    /* ---------- the stage: everything blends inside it ---------- */
+    .stage {
+      position: fixed; inset: 0;
+      background: #fff;
+      isolation: isolate;
+      display: grid; place-items: center;
+    }
 
+    /* ---------- 3D logo: the SVG stacked along Z to give it thickness ---------- */
+    .scene {
+      position: absolute; inset: 0;
+      display: grid; place-items: center;
+      perspective: 1400px;
+      pointer-events: none;
+    }
+    .logo {
+      position: relative;
+      width: min(118vw, 1900px);
+      aspect-ratio: 94 / 17;
+      transform-style: preserve-3d;
+      will-change: transform;
+    }
+    .logo img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      display: block;
+      backface-visibility: visible;
+      user-select: none; -webkit-user-drag: none;
+    }
+
+    /* ---------- text on top, in negative where it crosses the logo ---------- */
+    .intro {
+      position: relative; z-index: 1;
+      display: flex; flex-direction: column; align-items: center; gap: 6px;
+      color: #fff;
+      mix-blend-mode: difference;   /* white text: black on white, white on black */
+    }
+    .choices { display: flex; gap: 6px; }
     .choice {
-      border: 1.5px solid #000;
+      border: 1.5px solid #fff;
       border-radius: 100px;
       padding: 2px 8px;
       line-height: 15px;
@@ -33,16 +64,65 @@
       text-decoration: none;
       transition: background .2s, color .2s;
     }
-    .choice:hover { background: #000; color: #fff; }
+    .choice:hover { background: #fff; color: #000; }
   </style>
 </head>
 <body>
 
-  <p>Hybrid creative. Pick one.</p>
-  <nav class="choices" aria-label="Choose a section">
-    <a class="choice" href="photography/pagine/reportage.html">Photo</a>
-    <a class="choice" href="design/index.html">Design</a>
-  </nav>
+  <div class="stage">
+    <div class="scene" aria-hidden="true">
+      <div class="logo" id="logo"></div>
+    </div>
+
+    <div class="intro">
+      <p>Hybrid creative. Pick one.</p>
+      <nav class="choices" aria-label="Choose a section">
+        <a class="choice" href="photography/pagine/reportage.html">Photo</a>
+        <a class="choice" href="design/index.html">Design</a>
+      </nav>
+    </div>
+  </div>
+
+  <script>
+  (function () {
+    var logo = document.getElementById('logo');
+    var SRC = 'logo/logo-PietroZanotto.svg';
+
+    /* Thickness: copies of the logo, 1 unit apart along Z */
+    var LAYERS = 14, DEPTH = 16;   // px of depth at full width
+    function build() {
+      logo.innerHTML = '';
+      var d = DEPTH * Math.min(1, logo.offsetWidth / 1500);
+      for (var i = 0; i < LAYERS; i++) {
+        var img = new Image();
+        img.src = SRC; img.alt = ''; img.draggable = false;
+        img.style.transform = 'translateZ(' + (d / 2 - (d * i) / (LAYERS - 1)).toFixed(2) + 'px)';
+        logo.appendChild(img);
+      }
+    }
+    build();
+    var rt; window.addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(build, 150); });
+
+    /* Smooth "random" rotation: sums of sines with unrelated periods never repeat visibly */
+    var seed = Math.random() * 1000;
+    function wave(t, a, b, c) {
+      return Math.sin(t * a + seed) * 0.6 + Math.sin(t * b + seed * 1.7) * 0.3 + Math.sin(t * c + seed * 2.3) * 0.1;
+    }
+    function pose(t) {
+      var rx = 24 + 18 * wave(t, 0.23, 0.57, 1.31);   // tilt back like the reference
+      var ry = -8 + 22 * wave(t, 0.17, 0.41, 0.97);
+      var rz = -8 + 6 * wave(t, 0.13, 0.37, 0.89);
+      logo.style.transform = 'rotateX(' + rx.toFixed(2) + 'deg) rotateY(' + ry.toFixed(2) + 'deg) rotateZ(' + rz.toFixed(2) + 'deg)';
+    }
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { pose(0); return; }
+    var start = performance.now();
+    (function loop(now) {
+      pose((now - start) / 1000);
+      requestAnimationFrame(loop);
+    })(start);
+  }());
+  </script>
 
 </body>
 </html>
