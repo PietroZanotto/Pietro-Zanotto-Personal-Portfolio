@@ -32,11 +32,9 @@ main         { flex: 1; overflow-y: auto; min-height: 0; padding-bottom: 52px; }
   font-size: 13px;
   font-weight: 500;
   text-decoration: none;
-  color: var(--testo);
-  opacity: 0.5;
-  transition: opacity 0.2s;
+  color: var(--testo);   /* nero pieno, come nella parte design */
 }
-.footer-nav:hover      { opacity: 1; }
+.footer-nav:hover      { text-decoration: underline; }
 .footer-nav--next      { text-align: right; }
 
 /* ---- Loader di caricamento ---- */
