@@ -123,7 +123,7 @@ a:hover { text-decoration: underline; }
 ============================================= */
 .projects {
   border-top: var(--spessore-bordo) solid var(--bordo);
-  margin: 0 var(--margine);
+  margin: 8px var(--margine) 0;   /* 8px sotto la navbar, come l'indice della parte design */
 }
 
 .project-row {

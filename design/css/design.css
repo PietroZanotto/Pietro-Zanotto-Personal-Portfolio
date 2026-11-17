@@ -155,7 +155,7 @@ main { padding-bottom: 80px; }
 /* fixed CV bar: the CV scrolls under it and disappears below the line */
 .pz-about-title { display: none; position: fixed; top: var(--header-h); left: 0; right: 0; z-index: 19; background: var(--pz-color-bg-page); padding-top: 8px; }
 body[data-view="about"] .pz-about-title { display: grid; }
-.pz-about-title .pz-row { border-top: 0; border-bottom: var(--pz-stroke-rule) solid var(--pz-color-border-rule); padding: 0 0 2px; }
+.pz-about-title .pz-row { border-top: 0; border-bottom: var(--pz-stroke-rule) solid var(--pz-color-border-rule); }
 .pz-about-title .pz-row__title { text-transform: none; }
 /* the index sits exactly where the project title bar will be once a project is open */
 #view-work { padding-top: calc(var(--header-h) + 8px); }
@@ -164,8 +164,9 @@ body[data-view="about"] .pz-about-title { display: grid; }
   grid-template-columns: subgrid;
   grid-column: 1 / -1;  /* title rows run the full line; content stays on the 4 central columns */
   border-top: var(--pz-stroke-rule) solid var(--pz-color-border-rule);
-  min-height: 20px;
-  padding: 2px 0;
+  height: 20px;          /* same row height as the photo section */
+  padding: 0;
+  align-items: center;
 }
 .pz-index .pz-row:last-child { border-bottom: var(--pz-stroke-rule) solid var(--pz-color-border-rule); }
 .pz-row__num   { grid-column: 1; }
