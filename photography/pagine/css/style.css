@@ -141,13 +141,9 @@ a:hover { text-decoration: underline; }
 /* All'hover la riga si apre per mostrare l'immagine intera */
 .project-row:hover { height: var(--altezza-aperta, 500px); }
 
-/* All'hover la linea del titolo diventa nera con scritta bianca, dentro i bordi */
-.project-row {
-  background: linear-gradient(#000, #000) top / 100% var(--altezza-riga) no-repeat;
-  background-size: 100% 0;
-  background-clip: padding-box;
-}
-.project-row:hover { background-size: 100% var(--altezza-riga); text-decoration: none; }
+/* All'hover tutta la riga aperta diventa nera con scritta bianca, dentro i bordi */
+.project-row { background-clip: padding-box; }
+.project-row:hover { background-color: #000; text-decoration: none; }
 .project-row:hover .project-row__num,
 .project-row:hover .project-row__title,
 .project-row:hover .project-row__date { color: #fff; }
