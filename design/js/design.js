@@ -85,8 +85,7 @@
   var EASE = 'cubic-bezier(.65,0,.35,1)';
 
   function resetRows() {
-    indexRows.forEach(function (r) { r.style.transition = ''; r.style.transform = ''; r.style.opacity = ''; });
-    var f = document.querySelector('.pz-footer'); if (f) { f.style.transition = ''; f.style.opacity = ''; }
+    indexRows.forEach(function (r) { r.style.transition = ''; r.style.transform = ''; r.style.viewTransitionName = ''; r.classList.remove('is-picked'); });
     body.classList.remove('is-leaving');
   }
   window.addEventListener('pageshow', function (e) { if (e.persisted) resetRows(); });
@@ -98,23 +97,21 @@
       body.classList.add('is-leaving');
       var header = parseFloat(getComputedStyle(body).getPropertyValue('--header-h')) || 52;
       var dy = (header + 8) - row.getBoundingClientRect().top;
-      row.style.transition = 'transform .6s ' + EASE;
+      var T = '.55s ' + EASE;
+      /* the picked row keeps both its lines: it becomes the title bar */
+      row.classList.add('is-picked');
+      row.style.transition = 'transform ' + T;
       row.style.transform = 'translateY(' + dy + 'px)';
+      row.style.viewTransitionName = 'pz-title';
       indexRows.forEach(function (r, j) {
         if (j === i) return;
-        if (j > i) {
-          r.style.transition = 'transform .6s ' + EASE + ' ' + (j - i - 1) * 0.05 + 's, opacity .4s ease ' + (j - i - 1) * 0.05 + 's';
-          r.style.transform = 'translateY(' + window.innerHeight + 'px)';
-        } else {
-          r.style.transition = 'opacity .3s ease, transform .6s ' + EASE;
-          r.style.transform = 'translateY(' + dy + 'px)';
-        }
-        r.style.opacity = '0';
+        /* nothing fades: rows above slide up under the header,
+           rows below slide down out of the window, lines and all */
+        r.style.transition = 'transform ' + T;
+        r.style.transform = 'translateY(' + (j < i ? dy : window.innerHeight) + 'px)';
       });
-      var f = document.querySelector('.pz-footer');
-      if (f) { f.style.transition = 'opacity .3s ease'; f.style.opacity = '0'; }
       try { sessionStorage.setItem('pz-open', '1'); } catch (err) { /* ignore */ }
-      setTimeout(function () { location.href = row.href; }, 650);
+      setTimeout(function () { location.href = row.href; }, 560);
     });
   });
 }());

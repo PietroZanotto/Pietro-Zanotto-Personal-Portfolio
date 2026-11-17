@@ -213,7 +213,7 @@ a.pz-row:hover .pz-row__title { text-decoration: underline; }
   background: var(--pz-color-bg-page);
   padding-top: 8px;
 }
-.pz-project-title .pz-row { border-bottom: var(--pz-stroke-rule) solid var(--pz-color-border-rule); border-top: 0; padding: 0 0 2px; }
+.pz-project-title .pz-row { border-bottom: var(--pz-stroke-rule) solid var(--pz-color-border-rule); }
 .pz-project { padding-top: calc(var(--header-h) + 8px + 20px + var(--pz-space-30)); }
 .pz-block { display: grid; grid-template-columns: subgrid; grid-column: 2 / 6; margin-bottom: var(--pz-space-60); }
 .pz-block__label { grid-column: 1; color: var(--pz-color-text-secondary); text-transform: uppercase; }
@@ -288,21 +288,25 @@ body.is-short .v-short { display: grid; }
 
 /* =============================================
    OPEN-PROJECT ANIMATION
-   index: the clicked row rises to the title bar (design.js)
-   project: the content opens underneath it, like a window
+   index: the picked row rises to the title bar, the other rows slide away
+          (above: under the header, below: out of the window) — no fading lines
+   swap:  view transition, so there is no white flash between the two pages
+   project: the content drops in from above, from under the title bar
 ============================================= */
+@view-transition { navigation: auto; }
+::view-transition-old(root), ::view-transition-new(root) { animation: none; mix-blend-mode: normal; }
+::view-transition-group(pz-title) { animation-duration: 0s; }
+.pz-index { position: relative; z-index: 1; }
 body.is-leaving .pz-index { pointer-events: none; }
-html.is-opening .pz-project {
-  animation: pz-window .7s cubic-bezier(.2, .7, .2, 1) both;
-}
-html.is-opening .pz-footer { animation: pz-fade .4s ease .45s both; }
-@keyframes pz-window {
-  from { clip-path: inset(0 0 100% 0); transform: translateY(-18px); opacity: 0; }
-  to   { clip-path: inset(0 0 0 0); transform: none; opacity: 1; }
-}
+.pz-index .pz-row.is-picked { border-bottom: var(--pz-stroke-rule) solid var(--pz-color-border-rule); background: var(--pz-color-bg-page); }
+.pz-project-title .pz-row { view-transition-name: pz-title; }
+html.is-opening .pz-project { animation: pz-drop .8s cubic-bezier(.22, .8, .24, 1) both; }
+html.is-opening .pz-footer__nav { animation: pz-fade .4s ease .5s both; }
+@keyframes pz-drop { from { transform: translateY(-100vh); } to { transform: none; } }
 @keyframes pz-fade { from { opacity: 0; } to { opacity: 1; } }
 @media (prefers-reduced-motion: reduce) {
-  html.is-opening .pz-project, html.is-opening .pz-footer { animation: none; }
+  @view-transition { navigation: none; }
+  html.is-opening .pz-project, html.is-opening .pz-footer__nav { animation: none; }
 }
 
 /* Printed view: the header floats over the scans with no background */
