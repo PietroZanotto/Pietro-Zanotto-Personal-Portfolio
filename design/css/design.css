@@ -173,8 +173,9 @@ body[data-view="about"] .pz-about-title { display: grid; }
 .pz-row__title { grid-column: 2 / 4; text-transform: uppercase; }
 .pz-row__cat   { grid-column: 4 / 6; }
 .pz-row__year  { grid-column: 6; justify-self: end; }
-a.pz-row:hover { text-decoration: none; }
-a.pz-row:hover .pz-row__title { text-decoration: underline; }
+/* hover: the whole line turns black, inside the rules (not over them) */
+a.pz-row { background-clip: padding-box; transition: background .15s, color .15s; }
+a.pz-row:hover { text-decoration: none; background-color: #000; color: #fff; }
 
 /* ---------- CV ---------- */
 .pz-cv { row-gap: 0; }
