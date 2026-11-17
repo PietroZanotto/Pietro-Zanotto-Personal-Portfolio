@@ -82,6 +82,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   line-height: 15px;
   transition: background .2s, color .2s;
 }
+.pz-tabs button:hover { background: #eeeeee; }   /* light grey, like the photo section */
 .pz-tabs button[aria-pressed="true"] { background: #000; color: #fff; }
 /* inside a project, Work takes you back: arrow like the photo section */
 body.is-project .pz-tabs button[data-tab="work"]::before,
