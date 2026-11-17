@@ -50,10 +50,12 @@
   function render() {
     body.setAttribute('data-view', projectOpen ? 'project' : (state.web ? state.tab : 'printed'));
     body.classList.toggle('is-short', state.web && state.tab === 'work' && state.short);
+    body.classList.toggle('is-print-cv', !state.web && state.tab === 'about');
     printSwitch.setAttribute('aria-checked', String(!state.web));
     shortSwitch.setAttribute('aria-checked', String(state.web && state.short));
     tabs.classList.toggle('is-disabled', !state.web);
-    shortSwitch.classList.toggle('is-disabled', !state.web || state.tab !== 'work');
+    // Summarize only matters inside a project: dimmed on the index
+    shortSwitch.classList.toggle('is-disabled', !state.web || state.tab !== 'work' || !(isProject || projectOpen));
     tabButtons.forEach(function (b) {
       b.setAttribute('aria-pressed', String(state.web && b.getAttribute('data-tab') === state.tab));
     });
@@ -74,7 +76,7 @@
   });
 
   shortSwitch.addEventListener('click', function () {
-    if (!state.web || state.tab !== 'work') return;
+    if (!state.web || state.tab !== 'work' || !(isProject || projectOpen)) return;
     state.short = !state.short;
     render();
   });

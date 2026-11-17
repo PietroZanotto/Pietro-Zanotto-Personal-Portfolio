@@ -149,7 +149,10 @@ main { padding-bottom: 80px; }
 /* ---------- PRINTED: scans one under the other ---------- */
 #view-printed { padding-top: calc(var(--header-h) + 8px); }
 .pz-scans { width: 63.4vw; margin: 0 auto; }  /* 78vw - 10% - 5% - 5% */
+.pz-scans { display: flex; flex-direction: column; }
 .pz-scans img { width: 100%; height: auto; }
+/* Print from About Me: the CV (last scan) comes first */
+body.is-print-cv .pz-scans img:last-child { order: -1; }
 
 /* ---------- INDEX ROWS ---------- */
 #view-about { padding-top: calc(var(--header-h) + 8px + 20px + var(--pz-space-30)); }
@@ -325,7 +328,7 @@ body.is-leaving .pz-index { pointer-events: none; }
 html.is-opening .pz-project { animation: pz-drop 1s cubic-bezier(.22, .8, .24, 1) both; }
 .pz-footer.is-entering .pz-footer__nav,
 html.is-opening .pz-footer__nav { animation: pz-fade .5s ease .6s both; }
-@keyframes pz-drop { from { transform: translateY(-100vh); } to { transform: none; } }
+@keyframes pz-drop { 0% { transform: translateY(-100vh); opacity: 0; } 70% { opacity: 1; } 100% { transform: none; opacity: 1; } }
 @keyframes pz-fade { from { opacity: 0; } to { opacity: 1; } }
 @media (prefers-reduced-motion: reduce) {
   #view-project.is-dropping .pz-project, html.is-opening .pz-project,
