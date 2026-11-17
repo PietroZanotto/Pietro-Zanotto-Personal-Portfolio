@@ -291,10 +291,21 @@ body.is-short .v-short { display: grid; }
     display: flex;
     position: fixed; inset: 0;
     align-items: center; justify-content: center;
+    flex-direction: column; gap: 12px;
     padding: 16px;
     text-align: center;
     font-weight: 700;
   }
+  /* pill under the message, back to the home */
+  .pz-mobile-home {
+    border: 1.5px solid var(--pz-color-text-primary, #000);
+    border-radius: 100px;
+    padding: 3px 14px;
+    line-height: 15px;
+    color: var(--pz-color-text-primary, #000);
+    text-decoration: none;
+  }
+  .pz-mobile-home:active { background: #000; color: #fff; }
 }
 
 /* =============================================
