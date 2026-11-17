@@ -120,6 +120,8 @@
     main.className = content.className;
     main.innerHTML = content.innerHTML;
     view.appendChild(main);
+    // drop the animation once done, so nothing transformed is left around the sticky labels
+    main.addEventListener('animationend', function () { view.classList.remove('is-dropping'); }, { once: true });
     document.querySelector('main').after(view);
 
     var oldFooter = document.querySelector('.pz-footer');

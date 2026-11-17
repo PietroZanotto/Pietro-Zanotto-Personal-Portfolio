@@ -83,6 +83,9 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   transition: background .2s, color .2s;
 }
 .pz-tabs button[aria-pressed="true"] { background: #000; color: #fff; }
+/* inside a project, Work takes you back: arrow like the photo section */
+body.is-project .pz-tabs button[data-tab="work"]::before,
+body[data-view="project"] .pz-tabs button[data-tab="work"]::before { content: "← "; }
 
 /* On / off switch */
 .pz-switch {
@@ -127,8 +130,8 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   pointer-events: none;
 }
 .pz-footer img { grid-column: 2; height: 20px; width: auto; pointer-events: auto; }
-.pz-footer__nav { pointer-events: auto; opacity: .5; transition: opacity .2s; }
-.pz-footer__nav:hover { opacity: 1; text-decoration: none; }
+.pz-footer__nav { pointer-events: auto; color: var(--pz-color-text-primary, #000); }
+.pz-footer__nav:hover { text-decoration: underline; }
 .pz-footer__nav--prev { grid-column: 1; justify-self: start; }
 .pz-footer__nav--next { grid-column: 3; justify-self: end; }
 
@@ -215,8 +218,12 @@ a.pz-row:hover .pz-row__title { text-decoration: underline; }
 }
 .pz-project-title .pz-row { border-bottom: var(--pz-stroke-rule) solid var(--pz-color-border-rule); }
 .pz-project { padding-top: calc(var(--header-h) + 8px + 20px + var(--pz-space-30)); }
-.pz-block { display: grid; grid-template-columns: subgrid; grid-column: 2 / 6; margin-bottom: var(--pz-space-60); }
-.pz-block__label { grid-column: 1; color: var(--pz-color-text-secondary); text-transform: uppercase; }
+/* a section groups its blocks, so its label stays put across all of them */
+.pz-sec { display: grid; grid-template-columns: subgrid; grid-column: 2 / 6; }
+.pz-block { display: grid; grid-template-columns: subgrid; grid-column: 1 / -1; margin-bottom: var(--pz-space-60); }
+.pz-block__label { grid-column: 1; color: var(--pz-color-text-secondary); text-transform: uppercase;
+  /* stays just under the project title bar until the next section pushes it away */
+  position: sticky; top: calc(var(--header-h) + 8px + 20px + var(--pz-space-30)); align-self: start; }
 .pz-block__body  { grid-column: 2 / -1; display: flex; flex-direction: column; gap: 12px; }
 .pz-block__body ul { padding-left: 16px; }
 .pz-block__body a { text-decoration: underline; }
@@ -233,6 +240,7 @@ a.pz-row:hover .pz-row__title { text-decoration: underline; }
 
 /* Summarized: no blank lines between paragraphs */
 .v-short .pz-block__body { gap: 0; }
+.v-short .pz-block { margin-bottom: var(--pz-space-30); }   /* half the space between sections */
 
 /* Hover a paragraph: its key phrase / key words turn black */
 mark.pz-key { background: transparent; color: inherit; transition: background .2s, color .2s; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
