@@ -1,10 +1,11 @@
 /* ----------------------------------------------------------------
    PietroZanotto* — design section state
-   web    : false = printed scan, true = web version
+   web    : false = printed scan (Print switch on), true = web version (Print off)
    tab    : 'work' | 'about'   (only clickable when web is on)
    short  : summarized web version (only for Work, only when web is on)
    The state is kept for the visit (sessionStorage) and can be forced
-   from the URL: index.html?web=1&tab=about&short=1
+   from the URL: index.html?web=1&tab=about&short=1 (web=0 = Print on).
+   Arriving in the design section from outside, Print always starts off.
 ---------------------------------------------------------------- */
 (function () {
   var KEY = 'pz-design';
@@ -32,7 +33,8 @@
     try { sessionStorage.setItem(KEY, JSON.stringify(s)); } catch (e) { /* private mode: ignore */ }
   }
 
-  var state = Object.assign({ web: false, tab: 'work', short: false }, load());
+  var fromInside = document.referrer && new URL(document.referrer, location.href).pathname.indexOf('/design/') !== -1;
+  var state = Object.assign({ web: true, tab: 'work', short: false }, fromInside ? load() : {});
   var q = new URLSearchParams(location.search);
   if (q.has('web')) state.web = q.get('web') === '1';
   if (q.has('tab')) state.tab = q.get('tab') === 'about' ? 'about' : 'work';
@@ -40,7 +42,7 @@
   if (isProject) { state.web = true; state.tab = 'work'; }
   if (!state.web) state.short = false;
 
-  var webSwitch = document.querySelector('[data-switch="web"]');
+  var printSwitch = document.querySelector('[data-switch="print"]');
   var shortSwitch = document.querySelector('[data-switch="short"]');
   var tabs = document.querySelector('.pz-tabs');
   var tabButtons = tabs ? tabs.querySelectorAll('button') : [];
@@ -48,7 +50,7 @@
   function render() {
     body.setAttribute('data-view', projectOpen ? 'project' : (state.web ? state.tab : 'printed'));
     body.classList.toggle('is-short', state.web && state.tab === 'work' && state.short);
-    webSwitch.setAttribute('aria-checked', String(state.web));
+    printSwitch.setAttribute('aria-checked', String(!state.web));
     shortSwitch.setAttribute('aria-checked', String(state.web && state.short));
     tabs.classList.toggle('is-disabled', !state.web);
     shortSwitch.classList.toggle('is-disabled', !state.web || state.tab !== 'work');
@@ -63,7 +65,7 @@
     location.href = indexUrl;
   }
 
-  webSwitch.addEventListener('click', function () {
+  printSwitch.addEventListener('click', function () {
     state.web = !state.web;
     if (!state.web) state.short = false;
     if (isProject || projectOpen) return goIndex();
