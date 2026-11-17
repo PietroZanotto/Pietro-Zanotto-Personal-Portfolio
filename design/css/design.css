@@ -293,20 +293,21 @@ body.is-short .v-short { display: grid; }
    swap:  view transition, so there is no white flash between the two pages
    project: the content drops in from above, from under the title bar
 ============================================= */
-@view-transition { navigation: auto; }
-::view-transition-old(root), ::view-transition-new(root) { animation: none; mix-blend-mode: normal; }
-::view-transition-group(pz-title) { animation-duration: 0s; }
+#view-project { display: none; }
+body[data-view="project"] #view-project { display: block; }
+body[data-view="project"] > main { display: none; }
 .pz-index { position: relative; z-index: 1; }
 body.is-leaving .pz-index { pointer-events: none; }
 .pz-index .pz-row.is-picked { border-bottom: var(--pz-stroke-rule) solid var(--pz-color-border-rule); background: var(--pz-color-bg-page); }
-.pz-project-title .pz-row { view-transition-name: pz-title; }
-html.is-opening .pz-project { animation: pz-drop .8s cubic-bezier(.22, .8, .24, 1) both; }
-html.is-opening .pz-footer__nav { animation: pz-fade .4s ease .5s both; }
+#view-project.is-dropping .pz-project,
+html.is-opening .pz-project { animation: pz-drop 1s cubic-bezier(.22, .8, .24, 1) both; }
+.pz-footer.is-entering .pz-footer__nav,
+html.is-opening .pz-footer__nav { animation: pz-fade .5s ease .6s both; }
 @keyframes pz-drop { from { transform: translateY(-100vh); } to { transform: none; } }
 @keyframes pz-fade { from { opacity: 0; } to { opacity: 1; } }
 @media (prefers-reduced-motion: reduce) {
-  @view-transition { navigation: none; }
-  html.is-opening .pz-project, html.is-opening .pz-footer__nav { animation: none; }
+  #view-project.is-dropping .pz-project, html.is-opening .pz-project,
+  .pz-footer.is-entering .pz-footer__nav, html.is-opening .pz-footer__nav { animation: none; }
 }
 
 /* Printed view: the header floats over the scans with no background */
