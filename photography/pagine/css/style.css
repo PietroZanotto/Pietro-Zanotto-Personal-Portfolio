@@ -141,12 +141,8 @@ a:hover { text-decoration: underline; }
 /* All'hover la riga si apre per mostrare l'immagine intera */
 .project-row:hover { height: var(--altezza-aperta, 500px); }
 
-/* All'hover tutta la riga aperta diventa nera con scritta bianca, dentro i bordi */
-.project-row { background-clip: padding-box; }
-.project-row:hover { background-color: #000; text-decoration: none; }
-.project-row:hover .project-row__num,
-.project-row:hover .project-row__title,
-.project-row:hover .project-row__date { color: #fff; }
+/* All'hover la riga si apre e basta: sfondo bianco, scritte nere, niente sottolineatura */
+.project-row:hover { text-decoration: none; }
 
 /* Testo centrato verticalmente */
 .project-row__num,
