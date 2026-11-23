@@ -107,28 +107,39 @@
     function wave(t, a, b, c) {
       return Math.sin(t * a + seed) * 0.6 + Math.sin(t * b + seed * 1.7) * 0.3 + Math.sin(t * c + seed * 2.3) * 0.1;
     }
-    /* The cursor nudges the logo: about 10% of the free movement, eased in and out */
-    var INFLUENCE = 0.1;
+    /* While the cursor moves, the logo follows it entirely;
+       once the cursor stays still, it eases back into its own motion */
+    var IDLE_MS = 900;
     var target = { x: 0, y: 0 }, cur = { x: 0, y: 0 };
+    var lastMove = -Infinity, mix = 0;   // mix: 0 = free motion, 1 = cursor
     window.addEventListener('pointermove', function (e) {
+      if (e.pointerType === 'touch') return;
       target.x = (e.clientX / window.innerWidth) * 2 - 1;    // -1 left … 1 right
       target.y = (e.clientY / window.innerHeight) * 2 - 1;   // -1 top … 1 bottom
+      lastMove = performance.now();
     });
-    document.documentElement.addEventListener('pointerleave', function () { target.x = 0; target.y = 0; });
 
-    function pose(t) {
-      cur.x += (target.x - cur.x) * 0.05;
-      cur.y += (target.y - cur.y) * 0.05;
-      var rx = 20 + 50 * wave(t, 0.23, 0.57, 1.31) - 50 * INFLUENCE * cur.y;   // tilts back and forth
-      var ry = 150 * wave(t, 0.17, 0.41, 0.97) + 150 * INFLUENCE * cur.x;     // wide swings: past 90deg it shows its back
-      var rz = -8 + 22 * wave(t, 0.13, 0.37, 0.89) + 22 * INFLUENCE * cur.x;
+    function pose(t, now) {
+      cur.x += (target.x - cur.x) * 0.08;
+      cur.y += (target.y - cur.y) * 0.08;
+      var moving = now - lastMove < IDLE_MS;
+      mix += ((moving ? 1 : 0) - mix) * (moving ? 0.08 : 0.02);   // quick to grab, slow to let go
+      var free = {
+        x: 20 + 50 * wave(t, 0.23, 0.57, 1.31),    // tilts back and forth
+        y: 150 * wave(t, 0.17, 0.41, 0.97),        // wide swings: past 90deg it shows its back
+        z: -8 + 22 * wave(t, 0.13, 0.37, 0.89)
+      };
+      var hand = { x: 20 - 60 * cur.y, y: 160 * cur.x, z: -8 + 20 * cur.x };
+      var rx = free.x + (hand.x - free.x) * mix;
+      var ry = free.y + (hand.y - free.y) * mix;
+      var rz = free.z + (hand.z - free.z) * mix;
       logo.style.transform = 'translate(-50%, -50%) rotateX(' + rx.toFixed(2) + 'deg) rotateY(' + ry.toFixed(2) + 'deg) rotateZ(' + rz.toFixed(2) + 'deg)';
     }
 
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { pose(0); return; }
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { pose(0, 0); return; }
     var start = performance.now();
     (function loop(now) {
-      pose((now - start) / 1000);
+      pose((now - start) / 1000, now);
       requestAnimationFrame(loop);
     })(start);
   }());
