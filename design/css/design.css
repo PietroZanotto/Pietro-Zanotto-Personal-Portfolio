@@ -340,19 +340,31 @@ html.is-opening .pz-footer__nav { animation: pz-fade .5s ease .6s both; }
 /* Printed view: the header floats over the scans with no background */
 body[data-view="printed"] .pz-header { background: transparent; }
 
+.pz-mob { display: none; }   /* short mobile labels, see below */
+
 /* =============================================
    MOBILE — design index: only the printed portfolio,
    a short note in place of the switches
 ============================================= */
 @media (max-width: 767px) {
-  body:not(.is-project) .pz-header { background: var(--pz-color-bg-page); }
+  /* transparent header: Photo on the left, the note in the middle, mail icon on the right */
+  body:not(.is-project) .pz-header {
+    background: transparent;
+    grid-template-columns: auto 1fr auto;
+    column-gap: 10px;
+  }
   body:not(.is-project) .pz-header > * { display: none; }
+  body:not(.is-project) .pz-header > .pz-header__photo { display: block; grid-column: 1; }
   body:not(.is-project) .pz-header > .pz-header__mobile-note {
     display: block;
-    grid-column: 1 / -1;
+    grid-column: 2;
     justify-self: center;
     text-align: center;
   }
+  body:not(.is-project) .pz-header > .pz-header__contact { display: flex; grid-column: 3; justify-self: end; }
+  .pz-desk { display: none; }
+  .pz-mob { display: inline; }
+  .pz-mail { display: block; }
   body:not(.is-project) main > .pz-view,
   body:not(.is-project) .pz-about-title { display: none !important; }
   body:not(.is-project) main > #view-printed { display: block !important; }
