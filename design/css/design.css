@@ -288,8 +288,10 @@ body.is-short .v-short { display: grid; }
    NO MOBILE — the design part is meant for a computer
 ============================================= */
 .pz-mobile-block { display: none; }
+.pz-header__mobile-note { display: none; }
 @media (max-width: 767px) {
-  body > *:not(.pz-mobile-block) { display: none !important; }
+  /* projects: no mobile version, just the message + Home */
+  body.is-project > *:not(.pz-mobile-block) { display: none !important; }
   .pz-mobile-block {
     display: flex;
     position: fixed; inset: 0;
@@ -337,3 +339,26 @@ html.is-opening .pz-footer__nav { animation: pz-fade .5s ease .6s both; }
 
 /* Printed view: the header floats over the scans with no background */
 body[data-view="printed"] .pz-header { background: transparent; }
+
+/* =============================================
+   MOBILE — design index: only the printed portfolio,
+   a short note in place of the switches
+============================================= */
+@media (max-width: 767px) {
+  body:not(.is-project) .pz-header { background: var(--pz-color-bg-page); }
+  body:not(.is-project) .pz-header > * { display: none; }
+  body:not(.is-project) .pz-header > .pz-header__mobile-note {
+    display: block;
+    grid-column: 1 / -1;
+    justify-self: center;
+    text-align: center;
+  }
+  body:not(.is-project) main > .pz-view,
+  body:not(.is-project) .pz-about-title { display: none !important; }
+  body:not(.is-project) main > #view-printed { display: block !important; }
+  body:not(.is-project) .pz-scans { width: 100%; padding: 0 var(--pz-grid-margin); }
+  body:not(.is-project) .pz-scans img:last-child { order: 0; }   /* portfolio first, CV at the end */
+  /* Home pill after the last page, above the footer logo */
+  #view-printed .pz-mobile-home--end { display: table; margin: 24px auto 0; }
+}
+.pz-mobile-home--end { display: none; }
